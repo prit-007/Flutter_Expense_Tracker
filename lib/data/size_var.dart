@@ -40,4 +40,11 @@ class ResponsiveUtil {
     var responsiveMargin = EdgeInsets.all(media.width * 0.03); // Increased margin
     return responsiveMargin;
   }
+
+  static TextStyle getNormalFontStyle(BuildContext context){
+    return TextStyle(
+      fontSize: getNormalFont(context),
+      fontWeight: FontWeight.bold,
+    );
+  }
 }

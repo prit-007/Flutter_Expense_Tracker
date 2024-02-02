@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:expense_tracker/screens/analytics/views/analytics_page.dart';
 import 'package:expense_tracker/screens/home/views/home_body.dart';
 import 'package:flutter/cupertino.dart';
@@ -12,23 +14,64 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  int selectedPage = 0;
+  List<Widget> pages = [HomeBody(), AnalyticsPage()];
 
   @override
   Widget build(BuildContext context) {
-    int page = 0;
-    List pages = [HomeBody(),AnalyticsPage()];
-
     return Scaffold(
-      body: pages[page],
-      bottomNavigationBar: GNav(
-        onTabChange: (index){
-          page = index;
-        },
-        selectedIndex: page,
-        tabs: [
-          GButton(icon: CupertinoIcons.house_fill),
-          GButton(icon: CupertinoIcons.graph_square_fill)
-        ],
+      body: pages[selectedPage],
+      bottomNavigationBar: Container(
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(35),
+            topRight: Radius.circular(35),
+          ),
+        ),
+        child: GNav(
+          onTabChange: (index) {
+            setState(() {
+              selectedPage = index;
+            });
+          },
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          gap: 15,
+          tabs: [
+            GButton(
+              icon: CupertinoIcons.house_fill,
+              text: 'Home',
+            ),
+            GButton(
+              icon: CupertinoIcons.graph_square_fill,
+              text: 'Analytics',
+            )
+          ],
+          selectedIndex: selectedPage,
+        ),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        elevation: 4,
+        shape: CircleBorder(),
+        hoverColor: Colors.deepPurpleAccent,
+        child: Container(
+          width: 80,
+          height: 80,
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            gradient: LinearGradient(
+              transform: GradientRotation(pi / 4),
+              colors: [
+                Theme.of(context).colorScheme.tertiary,
+                Theme.of(context).colorScheme.secondary,
+                Theme.of(context).colorScheme.primary,
+              ],
+            ),
+          ),
+          child: Icon(CupertinoIcons.add),
+        ),
       ),
     );
   }
