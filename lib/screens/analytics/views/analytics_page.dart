@@ -22,7 +22,7 @@ class AnalyticsPage extends StatelessWidget {
           Text("Transaction",style: normalFontStyle,),
           SizedBox(height: 20,),
           Container(
-            height: ResponsiveUtil.getHeight(context),
+            height: ResponsiveUtil.getHeight(context)/2,
             width: ResponsiveUtil.getWidth(context),
             child: MyChart()
           )

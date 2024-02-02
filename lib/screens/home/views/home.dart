@@ -36,7 +36,10 @@ class _HomePageState extends State<HomePage> {
             });
           },
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          gap: 15,
+          gap: 10,
+          curve: Curves.easeInCubic,
+          activeColor: Colors.deepPurpleAccent,
+          rippleColor: Colors.deepPurple,
           tabs: [
             GButton(
               icon: CupertinoIcons.house_fill,
