@@ -6,7 +6,8 @@ import 'package:expense_tracker/screens/home/views/home_app_bar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../../../data/size_var.dart';
+import '../../../data/responsive_util.dart';
+import '../../all_expenses/views/all_expenses.dart';
 
 class HomeBody extends StatelessWidget {
   const HomeBody({super.key});
@@ -14,8 +15,10 @@ class HomeBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var normalFont = ResponsiveUtil.getNormalFont(context);
-    var titleFont = ResponsiveUtil.getTitleFont(context);
+    var titleFont = ResponsiveUtil.getPageTitleFont(context);
     var subTitleFont = ResponsiveUtil.getSubTitleFont(context);
+    var headingTitleFont = ResponsiveUtil.getHeadingTitleFont(context);
+    var headingSubtitleFont = ResponsiveUtil.getHeadingSubtitleFont(context);
     return Column(
       children: [
         HomeAppBar(),
@@ -23,6 +26,7 @@ class HomeBody extends StatelessWidget {
           height: 15,
         ),
         Container(
+          height: ResponsiveUtil.getHeight(context)/3,
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(25),
               gradient: LinearGradient(
@@ -40,8 +44,7 @@ class HomeBody extends StatelessWidget {
                     offset: Offset(5, 5))
               ]),
           child: Padding(
-            padding:
-                const EdgeInsets.symmetric(horizontal: 15.0, vertical: 10),
+            padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 10),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -54,14 +57,14 @@ class HomeBody extends StatelessWidget {
                         style: TextStyle(
                             color: Colors.white,
                             fontWeight: FontWeight.w400,
-                            fontSize: normalFont),
+                            fontSize: headingSubtitleFont),
                       ),
                       Text(
                         "\$ 3000",
                         style: TextStyle(
                             color: Colors.white,
                             fontWeight: FontWeight.bold,
-                            fontSize: titleFont),
+                            fontSize: headingTitleFont),
                       )
                     ],
                   ),
@@ -99,14 +102,14 @@ class HomeBody extends StatelessWidget {
                                     style: TextStyle(
                                         color: Colors.white,
                                         fontWeight: FontWeight.w400,
-                                        fontSize: normalFont),
+                                        fontSize: headingSubtitleFont),
                                   ),
                                   Text(
                                     "\$ 3000",
                                     style: TextStyle(
                                         color: Colors.white,
                                         fontWeight: FontWeight.bold,
-                                        fontSize: normalFont),
+                                        fontSize: titleFont),
                                   )
                                 ],
                               )
@@ -142,14 +145,15 @@ class HomeBody extends StatelessWidget {
                                     style: TextStyle(
                                         color: Colors.white,
                                         fontWeight: FontWeight.w400,
-                                        fontSize: normalFont),
+                                        fontSize: headingSubtitleFont),
                                   ),
                                   Text(
                                     "\$ 3000",
                                     style: TextStyle(
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: normalFont),
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: titleFont,
+                                    ),
                                   )
                                 ],
                               )
@@ -179,12 +183,12 @@ class HomeBody extends StatelessWidget {
             ),
             GestureDetector(
               onTap: () {
-                print(":::View All:::");
+                Navigator.push(context, MaterialPageRoute(builder: (context)=>AllExpenses()));
               },
               child: Text(
                 "View All",
                 style: TextStyle(
-                    fontSize: 15,
+                    fontSize: subTitleFont,
                     color: Theme.of(context).colorScheme.outline,
                     fontWeight: FontWeight.w400),
               ),
@@ -196,16 +200,20 @@ class HomeBody extends StatelessWidget {
         ),
         Expanded(
           child: GridView.builder(
-              itemCount: expenses.length,
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2),
-              itemBuilder: (context, index) {
-                return Padding(
-                  padding: const EdgeInsets.all(6.0),
-                  child: MyCard(index: index),
-                );
-              }),
-        )
+            itemCount: 6,
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: MediaQuery.of(context).orientation ==
+                  Orientation.portrait
+                  ? 2
+                  : 3, // Adjust the cross axis count for portrait and landscape
+              crossAxisSpacing: 2,
+              mainAxisSpacing: 2,
+            ),
+            itemBuilder: (context, index) {
+              return MyCustomCard(index: expenses.length-index-1);
+            },
+          ),
+        ),
       ],
     );
   }

@@ -30,8 +30,9 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  google_nav_bar: ^5.0.6
   fl_chart: ^0.66.1
+  google_nav_bar: ^5.0.6
+  font_awesome_flutter: ^10.7.0
 
 
   # The following adds the Cupertino Icons font to your application.

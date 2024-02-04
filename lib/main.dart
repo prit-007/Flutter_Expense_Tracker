@@ -1,7 +1,9 @@
+import 'package:expense_tracker/screens/analytics/views/analytics_page.dart';
 import 'package:expense_tracker/screens/home/views/home.dart';
+import 'package:expense_tracker/screens/newExpense/views/new_expense.dart';
 import 'package:flutter/material.dart';
 
-import 'data/size_var.dart';
+import 'data/responsive_util.dart';
 
 void main() {
   runApp(const MyApp());
@@ -28,10 +30,7 @@ class MyApp extends StatelessWidget {
           useMaterial3: true,
         ),
         home: Scaffold(
-          body: Padding(
-            padding: ResponsiveUtil.getPadding(context),
-            child: HomePage(),
-          ),
+          body: HomePage(),
         ),
       ),
     );

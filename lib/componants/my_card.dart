@@ -1,86 +1,91 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../data/expenses.dart';
-import '../data/size_var.dart';
+import '../data/responsive_util.dart';
+import '../screens/expensePage/views/expense_page.dart';
 
-class MyCard extends StatelessWidget {
-  var index;
+class MyCustomCard extends StatelessWidget {
+  final int index;
 
-  MyCard({super.key, required this.index});
+  MyCustomCard({Key? key, required this.index}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     var normalFont = ResponsiveUtil.getNormalFont(context);
-    var titleFont = ResponsiveUtil.getTitleFont(context);
     var subTitleFont = ResponsiveUtil.getSubTitleFont(context);
-    var mediaWidth = ResponsiveUtil.getWidth(context);
+    var iconSize = ResponsiveUtil.getIconSize(context);
 
-    return Card(
-      elevation: 5,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(15),
-      ),
+    return InkWell(
+      onTap: () {
+        // Navigate to ExpensePage when the card is tapped
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => ExpensePage(expense: expenses[index]),
+          ),
+        );
+      },
       child: Container(
-        padding: EdgeInsets.symmetric(vertical: 8, horizontal: 10),
-        width: mediaWidth * 0.4, // Adjust width percentage as needed
-        child: Column(
-          children: [
-            Flexible(
-              child: Icon(
-                expenses[index]['icon'],
-                size: 40,
-              ),
+        margin: ResponsiveUtil.getMargin(context),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(15),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.5),
+              spreadRadius: 1,
+              blurRadius: 4,
+              offset: Offset(0, 3),
             ),
-            SizedBox(height: 10.0),
-            Flexible(
-              child: Text(
+          ],
+          color: Colors.white,
+        ),
+        child: Padding(
+          padding: EdgeInsets.all(ResponsiveUtil.getWidth(context) * 0.01),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Icon(
+                expenses[index]['icon'],
+                size: iconSize,
+                color: Colors.blue,
+              ),
+              SizedBox(height: 8),
+              Text(
                 expenses[index]['name'],
                 style: TextStyle(
                   fontSize: subTitleFont,
                   fontWeight: FontWeight.bold,
                 ),
+                maxLines: null,
+                overflow: TextOverflow.ellipsis,
+                textAlign: TextAlign.center,
               ),
-            ),
-            SizedBox(height: 10.0),
-            Flexible(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              SizedBox(height: 5),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Icon(
                     expenses[index]['type'] == 'e'
                         ? CupertinoIcons.arrow_up_circle_fill
                         : CupertinoIcons.arrow_down_circle_fill,
-                    size: 20,
+                    size: subTitleFont,
                     color: expenses[index]['type'] == 'e'
                         ? Colors.red.shade200
                         : Colors.green.shade200,
                   ),
-                  Row(
-                    children: [
-                      Icon(
-                        (expenses[index]['type'] == 'e'
-                            ? CupertinoIcons.minus
-                            : CupertinoIcons.add),
-                        size: normalFont,
-                        color: expenses[index]['type'] == 'e'
-                            ? Colors.red.shade200
-                            : Colors.green.shade200,
-                      ),
-                      Text(
-                        "\$ " + expenses[index]['amount'],
-                        style: TextStyle(
-                          fontSize: normalFont,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ],
-                  )
+                  SizedBox(width: 5),
+                  Text(
+                    "\$ " + expenses[index]['amount'],
+                    style: TextStyle(
+                      fontSize: subTitleFont,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
                 ],
               ),
-            ),
-            SizedBox(height: 10.0),
-            Flexible(
-              child: Row(
+              SizedBox(height: 5),
+              Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
@@ -99,8 +104,8 @@ class MyCard extends StatelessWidget {
                   ),
                 ],
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
