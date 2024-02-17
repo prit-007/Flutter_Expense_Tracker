@@ -1,0 +1,49 @@
+{
+  "project_info": {
+    "project_number": "472171244454",
+    "firebase_url": "https://expense-tracker-flutterflow-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "expense-tracker-flutterflow",
+    "storage_bucket": "expense-tracker-flutterflow.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:472171244454:android:1b9ae5f4eedeab6132fd67",
+        "android_client_info": {
+          "package_name": "com.example.expense_tracker"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCBEzeftX9XUnzxxa7eZxGoD0aiP9JWcx8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:472171244454:android:4156f7e8c5408a3a32fd67",
+        "android_client_info": {
+          "package_name": "com.flutterflow.finwallet"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCBEzeftX9XUnzxxa7eZxGoD0aiP9JWcx8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

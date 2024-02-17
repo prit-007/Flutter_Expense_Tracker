@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -6,6 +7,7 @@ class HomeAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final user = FirebaseAuth.instance.currentUser!;
 
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -31,7 +33,7 @@ class HomeAppBar extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  "Your Name",
+                  "${user.email}",
                   style: TextStyle(
                     color: Theme.of(context).colorScheme.onBackground,
                     fontSize: 18,
@@ -43,7 +45,9 @@ class HomeAppBar extends StatelessWidget {
           ],
         ),
         IconButton(
-          onPressed: () {},
+          onPressed: () {
+            FirebaseAuth.instance.signOut();
+          },
           icon: Icon(CupertinoIcons.settings),
         )
       ],

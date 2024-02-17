@@ -2,7 +2,7 @@ import 'dart:math';
 import 'dart:ui';
 
 import 'package:expense_tracker/data/expenses.dart';
-import 'package:expense_tracker/data/responsive_util.dart';
+import 'package:expense_tracker/componants/responsive_util.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';

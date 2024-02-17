@@ -4,7 +4,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
 
 import '../../../data/expenses.dart';
-import '../../../data/responsive_util.dart';
+import '../../../componants/responsive_util.dart';
 
 class NewExpensePage extends StatefulWidget {
   final Map<dynamic, dynamic>? expense;

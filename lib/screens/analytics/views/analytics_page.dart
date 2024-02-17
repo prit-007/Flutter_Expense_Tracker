@@ -2,7 +2,7 @@ import 'package:expense_tracker/screens/analytics/views/my_chart.dart';
 import 'package:expense_tracker/screens/home/views/home_app_bar.dart';
 import 'package:flutter/material.dart';
 
-import '../../../data/responsive_util.dart';
+import '../../../componants/responsive_util.dart';
 
 class AnalyticsPage extends StatelessWidget {
   const AnalyticsPage({super.key});

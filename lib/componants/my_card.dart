@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../data/expenses.dart';
-import '../data/responsive_util.dart';
+import 'responsive_util.dart';
 import '../screens/expensePage/views/expense_page.dart';
 
 class MyCustomCard extends StatelessWidget {
