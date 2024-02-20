@@ -46,7 +46,6 @@ class MyApp extends StatelessWidget {
             secondary: Color(0xFFE064F7),
             tertiary: Color(0xFFFF8D6C),
           ),
-          useMaterial3: true,
         ),
         themeMode: ThemeMode.system, // Use system theme mode
         home: AnimatedSplashScreen(

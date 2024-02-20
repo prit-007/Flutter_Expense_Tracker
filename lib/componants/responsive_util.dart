@@ -23,7 +23,7 @@ class ResponsiveUtil {
 
   static double getHeadingTitleFont(BuildContext context) {
     var media = MediaQuery.of(context);
-    return 40.0 * media.textScaler.scale(1.0);
+    return 35.0 * media.textScaler.scale(1.0);
   }
 
   static double getHeadingSubtitleFont(BuildContext context) {

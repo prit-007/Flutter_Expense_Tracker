@@ -6,9 +6,9 @@ import '../screens/expensePage/views/expense_page.dart';
 import 'navigation_util.dart';
 
 class MyCustomCard2 extends StatelessWidget {
-  final int index;
+  final Map<String,dynamic> expense;
 
-  MyCustomCard2({Key? key, required this.index}) : super(key: key);
+  MyCustomCard2({Key? key, required this.expense}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -20,11 +20,11 @@ class MyCustomCard2 extends StatelessWidget {
       onTap: () {
         NavigationUtil.navigateWithFadeTransition(
           context,
-          ExpensePage(expense: expenses[index]),
+          ExpensePage(expense: expense),
         );
       },
       child: Card(
-        surfaceTintColor: expenses[index]['type'] == 'i'
+        surfaceTintColor: expense['type'] == 'i'
             ? Colors.greenAccent.shade100
             : Colors.redAccent.shade100,
         margin: EdgeInsets.symmetric(vertical: 8, horizontal: 10),
@@ -37,11 +37,11 @@ class MyCustomCard2 extends StatelessWidget {
             ResponsiveUtil.getWidth(context) * 0.03,
           ), // Increased padding
           leading: CircleAvatar(
-            backgroundColor: expenses[index]['type'] == 'e'
+            backgroundColor: expense['type'] == 'e'
                 ? Colors.red[100]
                 : Colors.green[100],
             child: Icon(
-              expenses[index]['icon'],
+              expense['icon'],
               size: 20,
               color: Colors.white,
             ),
@@ -54,11 +54,11 @@ class MyCustomCard2 extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      expenses[index]['name'],
+                      expense['name'],
                       style: TextStyle(
                         fontSize: subTitleFont * 1.3,
                         fontWeight: FontWeight.bold,
-                        color: expenses[index]['type'] == 'e'
+                        color: expense['type'] == 'e'
                             ? Colors.red
                             : Colors.green,
                       ),
@@ -67,11 +67,11 @@ class MyCustomCard2 extends StatelessWidget {
                     ),
                     SizedBox(height: 5),
                     Text(
-                      "\$ " + expenses[index]['amount'],
+                      "\$ " + expense['amount'],
                       style: TextStyle(
                         fontSize: subTitleFont,
                         fontWeight: FontWeight.bold,
-                        color: expenses[index]['type'] == 'e'
+                        color: expense['type'] == 'e'
                             ? Colors.red
                             : Colors.green,
                       ),
@@ -83,11 +83,11 @@ class MyCustomCard2 extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
                   Text(
-                    expenses[index]['day'],
+                    expense['day'],
                     style: TextStyle(fontSize: normalFont, color: Colors.grey),
                   ),
                   Text(
-                    expenses[index]['time'],
+                    expense['time'],
                     style: TextStyle(fontSize: normalFont, color: Colors.grey),
                   ),
                 ],

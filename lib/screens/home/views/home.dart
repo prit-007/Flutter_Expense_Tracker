@@ -29,7 +29,6 @@ class _HomePageState extends State<HomePage> {
       ),
       bottomNavigationBar: GNav(
         duration: Duration(milliseconds: 500),
-        tabActiveBorder: Border.all(color: CupertinoColors.white),
         haptic: true,
         onTabChange: (index) {
           setState(() {

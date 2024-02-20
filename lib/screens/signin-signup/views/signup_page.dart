@@ -1,6 +1,8 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 import '../../../componants/responsive_util.dart';
 
@@ -28,10 +30,24 @@ class _SignupPageState extends State<SignupPage> {
       if (_confirmPasswordController.text.trim() ==
           _passwordController.text.trim()) {
         try {
+          // Create user in FirebaseAuth
           await FirebaseAuth.instance.createUserWithEmailAndPassword(
             email: _emailController.text.trim(),
             password: _passwordController.text.trim(),
           );
+
+          // Create user document in Firestore
+
+          await FirebaseFirestore.instance.collection("USERS").add({
+            'userName': _usernameController.text.trim(),
+            'email': _emailController.text.trim(),
+            'createdAt': DateFormat("MMMM d, y").format(DateTime.now()),
+            'loginHistory': [],
+            'budget': null,
+          });
+
+          // Create expenses collection under the user document
+          // await userDocRef.collection('expenses').add({});
         } on FirebaseAuthException catch (e) {
           setState(() {
             _errorMessage = e.message;
@@ -122,6 +138,13 @@ class _SignupPageState extends State<SignupPage> {
                           validator: (value) {
                             if (value!.isEmpty) {
                               return 'Please enter your email';
+                            }
+                            // Email format validation
+                            bool isValidEmail =
+                                RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$')
+                                    .hasMatch(value);
+                            if (!isValidEmail) {
+                              return 'Please enter a valid email address';
                             }
                             return null;
                           },
